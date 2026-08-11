@@ -43,11 +43,11 @@ def test_diff_portions_pd(start,portion_start,portion_ends,step,odds,flips,simco
 
 start = 0.005
 step = 0.005
-end = 0.5 + step
+end = 0.6 + step
 starting_amt = 100
 odds = 0.6
 sim_flips = 100
-sim_count = 1500
+sim_count = 3000
 
 result_frame = test_diff_portions_pd(starting_amt,start,end,step,odds,sim_flips,sim_count)
 
