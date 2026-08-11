@@ -6,8 +6,8 @@ import random as rd
 initial_value = 100
 coin_perc = 0.6
 portion = 0.1
-sim_flips = 1000
-sim_count = 10_000
+sim_flips = 100
+sim_count = 3000
 
 def test_portion(start_amt,portion,odds,flips):
     #print("initial conditions: start:",start_amt,"bet portion:",portion,"odds:",odds,"flips:",flips)
@@ -34,6 +34,9 @@ def test_diff_portions(start,portion_start,portion_ends,step,odds,flips,simcount
         step_lib[current_portion] = re_test_portioning(start,current_portion,odds,flips,simcount)
 
     return step_lib
+
+
+
 
 results = test_diff_portions(initial_value,0.005,0.43,0.005,coin_perc,sim_flips,sim_count)
 
