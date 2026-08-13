@@ -47,7 +47,7 @@ end = 0.6 + step
 starting_amt = 100
 odds = 0.6
 sim_flips = 100
-sim_count = 3000
+sim_count = 2000
 
 result_frame = test_diff_portions_pd(starting_amt,start,end,step,odds,sim_flips,sim_count)
 
