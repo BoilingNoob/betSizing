@@ -29,7 +29,7 @@ print(best_one.to_string())
 
 plt.scatter(print_df["portion_param"], print_df["median_payout"], color='red', label='Noisy Data')
 plt.plot(print_df["portion_param"], normal_dist_func(print_df["portion_param"], *popt), color='blue', label='Fitted Curve', linewidth=2)
-plt.plot(print_df["portion_param"], my_derivative_y, color='green', label='Fitted Curve', linewidth=2)
+plt.plot(print_df["portion_param"], my_derivative_y, color='green', label='derivative Curve', linewidth=2)
 plt.plot(best_one["portion_param"], best_one["median_payout"], marker='o', markersize=5, color='orange', label='Best Point')
 
 plt.legend()
