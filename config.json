@@ -1,0 +1,9 @@
+{
+    "start":0.005,
+    "step": 0.005,
+    "end" : 0.6,
+    "starting_amt" : 100,
+    "odds" : 0.6,
+    "sim_flips" : 100,
+    "sim_count" : 2000
+}

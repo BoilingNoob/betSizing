@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import sympy as sy
 import random as rd
+import json
 
 def test_portion_pd(start_amt,portion,odds,flips):
     portion_pass = 1+portion
@@ -18,16 +19,14 @@ def test_portion_pd(start_amt,portion,odds,flips):
     result_amt = start_amt*total_mult
 
     return result_amt
-
 def re_test_portioning_median(start,portion,odds,flips,simcount):
     simcount = int(simcount)
     sims = np.empty(simcount)
     for i in range(0,simcount):
         sims[i] = test_portion_pd(start,portion,odds,flips)
     return np.median(sims)
-
 def test_diff_portions_pd(start,portion_start,portion_ends,step,odds,flips,simcount):
-    sim_frame = pd.DataFrame(np.arange(portion_start,portion_ends,step),columns=["portion_param"])
+    sim_frame = pd.DataFrame(np.arange(portion_start,portion_ends+step,step),columns=["portion_param"])
     sim_frame["start_amt"] = start
     sim_frame["odds"] = odds
     sim_frame["sim_flips"] = flips
@@ -40,20 +39,21 @@ def test_diff_portions_pd(start,portion_start,portion_ends,step,odds,flips,simco
     sim_frame["median_payout"] = sim_frame["median_payout"].round(0)
 
     return sim_frame
+def load_cfg(cfg_path = r"config.json"):
+	with open(cfg_path, "r") as file:
+		config_string = file.read()
 
-start = 0.005
-step = 0.005
-end = 0.6 + step
-starting_amt = 100
-odds = 0.6
-sim_flips = 100
-sim_count = 2000
+	config_obj = json.loads(config_string)
+	return config_obj
 
-result_frame = test_diff_portions_pd(starting_amt,start,end,step,odds,sim_flips,sim_count)
+cfg_path = r"config.json"
+config_obj = load_cfg(cfg_path)
+print(config_obj)
+
+result_frame = test_diff_portions_pd(config_obj['starting_amt'],config_obj['start'],config_obj['end'],config_obj['step'],config_obj['odds'],config_obj['sim_flips'],config_obj['sim_count'])
 
 print("organized:")
 print(result_frame.to_string())
-
 print("sorted by median payout:")
 print(result_frame.sort_values(by=["median_payout","portion_param"],ascending=[False,True]).to_string())
 
